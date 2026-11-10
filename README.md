@@ -142,9 +142,15 @@ Pytest runs FastAPI's normal handlers and authentication through TestClient, wit
 
 `scripts/demo.py` executes real curl subprocesses. It saves complete responses and masks only credential text in displayed request commands. `scripts/capture_portfolio.py` uses headless Playwright Chromium to screenshot the actual `/docs` UI and render saved run evidence. It checks PNG dimensions and page overflow.
 
-- `portfolio_images/01_swagger.png` contains the real Swagger UI with POST `/chat` expanded.
-- `portfolio_images/02_chat_response.png` contains a complete actual request/response from the first curl exchange, in **rule-based mode with no LLM**.
-- `portfolio_images/03_tenant_isolation_tests.png` contains selected exact test lines and the actual pytest summary, plus live health fields. Repeated test-file prefixes and progress percentages are removed for readability. The complete warning and all test output remain in `output/pytest.txt`.
+These screenshots were captured in **rule-based demo mode with no LLM**.
+
+![Swagger UI with POST /chat expanded](portfolio_images/01_swagger.png)
+
+![Rule-based chat request and response, no LLM](portfolio_images/02_chat_response.png)
+
+![Tenant-isolation tests and pytest summary](portfolio_images/03_tenant_isolation_tests.png)
+
+The first image is the real Swagger UI with POST `/chat` expanded. The second is a complete actual request/response from the first curl exchange. The third shows selected exact test lines and the actual pytest summary, plus live health fields. Repeated test-file prefixes and progress percentages are removed for readability. The complete warning and all test output remain in `output/pytest.txt`.
 
 After verification, stop uvicorn with Ctrl+C in its terminal and stop only this compose project's database.
 
