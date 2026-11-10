@@ -1,0 +1,20 @@
+name: tenant-chatbot
+services:
+  db:
+    image: ${POSTGRES_IMAGE:-pgvector/pgvector:pg16}
+    container_name: tenant-chatbot-db
+    environment:
+      POSTGRES_DB: tenant_chatbot
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: local_admin_demo
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - tenant_chatbot_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d tenant_chatbot"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+volumes:
+  tenant_chatbot_data:

@@ -1,0 +1,1 @@
+pgvector/pgvector:pg16 running healthy

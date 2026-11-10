@@ -1,0 +1,1 @@
+Ollama executable absent. No installation or request attempted.

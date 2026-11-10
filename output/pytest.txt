@@ -1,0 +1,54 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.16, pytest-9.2.0, pluggy-1.7.0 -- .venv/bin/python
+cachedir: .pytest_cache
+rootdir: .
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.16.0
+collecting ... collected 37 items
+
+tests/test_chatbot.py::test_health_confirms_real_db_role_and_rls PASSED  [  2%]
+tests/test_chatbot.py::test_missing_or_unknown_key_is_401[headers0] PASSED [  5%]
+tests/test_chatbot.py::test_missing_or_unknown_key_is_401[headers1] PASSED [  8%]
+tests/test_chatbot.py::test_answers_only_include_authenticated_tenant[acme] PASSED [ 10%]
+tests/test_chatbot.py::test_answers_only_include_authenticated_tenant[bluebird] PASSED [ 13%]
+tests/test_chatbot.py::test_answers_only_include_authenticated_tenant[nova] PASSED [ 16%]
+tests/test_chatbot.py::test_cross_tenant_session_read_and_reuse_are_404 PASSED [ 18%]
+tests/test_chatbot.py::test_followups_keep_intent_and_unspecified_filters PASSED [ 21%]
+tests/test_chatbot.py::test_new_sessions_have_independent_memory PASSED  [ 24%]
+tests/test_chatbot.py::test_concurrent_turns_preserve_complete_session_history PASSED [ 27%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[top_posts] PASSED [ 29%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[worst_posts] PASSED [ 32%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[engagement_rate] PASSED [ 35%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[follower_growth] PASSED [ 37%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[best_posting_time] PASSED [ 40%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[totals] PASSED [ 43%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[compare_platforms] PASSED [ 45%]
+tests/test_chatbot.py::test_each_whitelisted_template_has_expected_shape[help_faq] PASSED [ 48%]
+tests/test_chatbot.py::test_totals_and_rates_are_internally_consistent PASSED [ 51%]
+tests/test_chatbot.py::test_ranked_posts_and_comparison_match_request PASSED [ 54%]
+tests/test_chatbot.py::test_raw_queries_without_tenant_return_zero_for_every_data_table PASSED [ 56%]
+tests/test_chatbot.py::test_rls_rejects_wrong_repository_scope_and_unfiltered_sql PASSED [ 59%]
+tests/test_chatbot.py::test_rls_with_check_rejects_cross_tenant_write PASSED [ 62%]
+tests/test_chatbot.py::test_set_local_resets_after_commit_and_rollback PASSED [ 64%]
+tests/test_chatbot.py::test_caller_cannot_supply_tenant_id[body] PASSED  [ 67%]
+tests/test_chatbot.py::test_caller_cannot_supply_tenant_id[query] PASSED [ 70%]
+tests/test_chatbot.py::test_invalid_or_unsupported_questions_are_422[ ] PASSED [ 72%]
+tests/test_chatbot.py::test_invalid_or_unsupported_questions_are_422[unrecognized request] PASSED [ 75%]
+tests/test_chatbot.py::test_invalid_or_unsupported_questions_are_422[totals last 0 days] PASSED [ 78%]
+tests/test_chatbot.py::test_invalid_or_unsupported_questions_are_422[totals from 2026-02-30 to 2026-03-01] PASSED [ 81%]
+tests/test_chatbot.py::test_sql_like_text_cannot_execute_statements PASSED [ 83%]
+tests/test_chatbot.py::test_relative_and_explicit_date_boundaries[totals last 7 days-2026-11-03-2026-11-10] PASSED [ 86%]
+tests/test_chatbot.py::test_relative_and_explicit_date_boundaries[totals last month-2026-10-01-2026-11-01] PASSED [ 89%]
+tests/test_chatbot.py::test_relative_and_explicit_date_boundaries[totals this week-2026-11-09-2026-11-10] PASSED [ 91%]
+tests/test_chatbot.py::test_relative_and_explicit_date_boundaries[totals from 2026-10-01 to 2026-10-02-2026-10-01-2026-10-03] PASSED [ 94%]
+tests/test_chatbot.py::test_help_uses_local_hashing_and_real_vector_distance_when_available PASSED [ 97%]
+tests/test_chatbot.py::test_llm_default_is_noop_and_not_called PASSED    [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.12/site-packages/fastapi/testclient.py:1
+  .venv/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 37 passed, 1 warning in 0.25s =========================

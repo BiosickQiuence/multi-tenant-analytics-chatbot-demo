@@ -1,0 +1,87 @@
+{
+  "tenants": [
+    {
+      "name": "Acme Coffee",
+      "tenant_id": "91d70aec-239e-52ea-8667-9123266de076",
+      "posts": 270,
+      "platforms": 3,
+      "days": 90,
+      "first_post": "2026-08-12 08:00:00+00:00",
+      "last_post": "2026-11-09 19:00:00+00:00"
+    },
+    {
+      "name": "Bluebird Fitness",
+      "tenant_id": "d6458d54-3f04-5806-a299-be637a1baf2c",
+      "posts": 270,
+      "platforms": 3,
+      "days": 90,
+      "first_post": "2026-08-12 08:00:00+00:00",
+      "last_post": "2026-11-09 19:00:00+00:00"
+    },
+    {
+      "name": "Nova Books",
+      "tenant_id": "ec1a9b47-d094-54d1-b358-781912346754",
+      "posts": 270,
+      "platforms": 3,
+      "days": 90,
+      "first_post": "2026-08-12 08:00:00+00:00",
+      "last_post": "2026-11-09 19:00:00+00:00"
+    }
+  ],
+  "app_role": {
+    "rolname": "tenant_chatbot_app",
+    "rolsuper": false,
+    "rolbypassrls": false,
+    "rolcreatedb": false,
+    "rolcreaterole": false
+  },
+  "rls_policies": [
+    {
+      "tablename": "chat_messages",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "chat_sessions",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "help_faq",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "posts",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "social_accounts",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "tenants",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    },
+    {
+      "tablename": "users",
+      "policyname": "tenant_boundary",
+      "qual": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)",
+      "with_check": "(tenant_id = (NULLIF(current_setting('app.tenant_id'::text, true), ''::text))::uuid)"
+    }
+  ],
+  "pgvector": {
+    "extversion": "0.8.7"
+  },
+  "post_count": 810,
+  "posts_sha256": "832c11509a03c24b423d36422717f8887e5f7cd6786cccb40629f4422bc60fb2"
+}

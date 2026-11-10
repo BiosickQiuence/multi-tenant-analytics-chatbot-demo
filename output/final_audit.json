@@ -1,0 +1,33 @@
+{
+  "successful_curl_questions": 10,
+  "tenants_in_curl_demo": 2,
+  "distinct_sql_templates": 8,
+  "cross_tenant_history_http": 404,
+  "unknown_key_http": 401,
+  "followup_history_messages": 6,
+  "credential_masking_verified": true,
+  "images": [
+    {
+      "file": "01_swagger.png",
+      "size": [
+        1600,
+        1100
+      ]
+    },
+    {
+      "file": "02_chat_response.png",
+      "size": [
+        1600,
+        1100
+      ]
+    },
+    {
+      "file": "03_tenant_isolation_tests.png",
+      "size": [
+        1600,
+        1100
+      ]
+    }
+  ],
+  "pytest_summary": "======================== 37 passed, 1 warning in 0.25s ========================="
+}

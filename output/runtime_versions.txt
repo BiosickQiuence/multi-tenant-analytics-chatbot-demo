@@ -1,0 +1,8 @@
+Python 3.12.16
+uv 0.13.7 (316c827e0 2026-11-03 aarch64-apple-darwin)
+Running uvicorn 0.54.0 with CPython 3.12.16 on Darwin
+pytest 9.2.0
+Version 1.65.0
+Docker Compose version v5.6.1
+Checked 29 packages in 4ms
+All installed packages are compatible

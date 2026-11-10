@@ -1,0 +1,20 @@
+[
+  {
+    "file": "01_swagger.png",
+    "width": 1600,
+    "height": 1100,
+    "bytes": 89032
+  },
+  {
+    "file": "02_chat_response.png",
+    "width": 1600,
+    "height": 1100,
+    "bytes": 148816
+  },
+  {
+    "file": "03_tenant_isolation_tests.png",
+    "width": 1600,
+    "height": 1100,
+    "bytes": 194534
+  }
+]

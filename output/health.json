@@ -1,0 +1,1 @@
+{"status":"ok","mode":"rule-based","synthetic_data":true,"llm_calls":false,"demo_clock":"2026-11-10T12:00:00+00:00","database_role":"tenant_chatbot_app","rolsuper":false,"rolbypassrls":false,"pgvector":true,"rls_tables":7,"owns_tables":false}

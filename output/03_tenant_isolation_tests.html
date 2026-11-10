@@ -1,0 +1,144 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Tenant isolation tests</title>
+    <style>
+    * { box-sizing: border-box; }
+    body { margin:0; padding:45px 48px; background:#edf2f8; color:#172338;
+      font-family:Arial,sans-serif; width:1600px; height:1100px; }
+    .eyebrow { font-size:16px; font-weight:700; letter-spacing:2px; color:#50627a; margin-bottom:16px; }
+    h1 { margin:0 0 20px; font-size:32px; line-height:1.25; font-weight:700; }
+    .meta { color:#50627a; font-size:19px; margin-bottom:27px; }
+    .panels { display:grid; grid-template-columns:420px 1fr; gap:24px; }
+    .terminal { background:#132033; border-radius:17px; overflow:hidden; box-shadow:0 12px 30px #17324d15; }
+    .bar { display:flex; gap:16px; align-items:center; background:#203148; padding:17px 23px;
+      color:#cfdaeb; font-size:17px; font-weight:700; }
+    .dots { color:#65d6ab; letter-spacing:5px; }
+    .content { padding:22px 25px; }
+    pre { color:#e7edf7; font-family:Menlo,Consolas,monospace; font-size:18px;
+      line-height:1.38; margin:0; white-space:pre-wrap; overflow-wrap:anywhere; }
+    .note { font-size:18px; line-height:1.55; color:#50627a; margin-top:24px; }
+    .key { color:#75dfb7; }
+    pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.hll { background-color: #49483e }
+.c { color: #959077 } /* Comment */
+.err { color: #ED007E; background-color: #1E0010 } /* Error */
+.esc { color: #F8F8F2 } /* Escape */
+.g { color: #F8F8F2 } /* Generic */
+.k { color: #66D9EF } /* Keyword */
+.l { color: #AE81FF } /* Literal */
+.n { color: #F8F8F2 } /* Name */
+.o { color: #FF4689 } /* Operator */
+.x { color: #F8F8F2 } /* Other */
+.p { color: #F8F8F2 } /* Punctuation */
+.ch { color: #959077 } /* Comment.Hashbang */
+.cm { color: #959077 } /* Comment.Multiline */
+.cp { color: #959077 } /* Comment.Preproc */
+.cpf { color: #959077 } /* Comment.PreprocFile */
+.c1 { color: #959077 } /* Comment.Single */
+.cs { color: #959077 } /* Comment.Special */
+.gd { color: #FF4689 } /* Generic.Deleted */
+.ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+.ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.gr { color: #FF4689 } /* Generic.Error */
+.gh { color: #F8F8F2 } /* Generic.Heading */
+.gi { color: #A6E22E } /* Generic.Inserted */
+.go { color: #66D9EF } /* Generic.Output */
+.gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+.gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+.gu { color: #959077 } /* Generic.Subheading */
+.gt { color: #66D9EF } /* Generic.Traceback */
+.kc { color: #66D9EF } /* Keyword.Constant */
+.kd { color: #66D9EF } /* Keyword.Declaration */
+.kn { color: #FF4689 } /* Keyword.Namespace */
+.kp { color: #66D9EF } /* Keyword.Pseudo */
+.kr { color: #66D9EF } /* Keyword.Reserved */
+.kt { color: #66D9EF } /* Keyword.Type */
+.ld { color: #E6DB74 } /* Literal.Date */
+.m { color: #AE81FF } /* Literal.Number */
+.s { color: #E6DB74 } /* Literal.String */
+.na { color: #A6E22E } /* Name.Attribute */
+.nb { color: #A6E22E } /* Name.Builtin */
+.nc { color: #A6E22E } /* Name.Class */
+.no { color: #66D9EF } /* Name.Constant */
+.nd { color: #A6E22E } /* Name.Decorator */
+.ni { color: #F8F8F2 } /* Name.Entity */
+.ne { color: #A6E22E } /* Name.Exception */
+.nf { color: #A6E22E } /* Name.Function */
+.nl { color: #F8F8F2 } /* Name.Label */
+.nn { color: #F8F8F2 } /* Name.Namespace */
+.nx { color: #A6E22E } /* Name.Other */
+.py { color: #F8F8F2 } /* Name.Property */
+.nt { color: #FF4689 } /* Name.Tag */
+.nv { color: #F8F8F2 } /* Name.Variable */
+.ow { color: #FF4689 } /* Operator.Word */
+.pm { color: #F8F8F2 } /* Punctuation.Marker */
+.w { color: #F8F8F2 } /* Text.Whitespace */
+.mb { color: #AE81FF } /* Literal.Number.Bin */
+.mf { color: #AE81FF } /* Literal.Number.Float */
+.mh { color: #AE81FF } /* Literal.Number.Hex */
+.mi { color: #AE81FF } /* Literal.Number.Integer */
+.mo { color: #AE81FF } /* Literal.Number.Oct */
+.sa { color: #E6DB74 } /* Literal.String.Affix */
+.sb { color: #E6DB74 } /* Literal.String.Backtick */
+.sc { color: #E6DB74 } /* Literal.String.Char */
+.dl { color: #E6DB74 } /* Literal.String.Delimiter */
+.sd { color: #E6DB74 } /* Literal.String.Doc */
+.s2 { color: #E6DB74 } /* Literal.String.Double */
+.se { color: #AE81FF } /* Literal.String.Escape */
+.sh { color: #E6DB74 } /* Literal.String.Heredoc */
+.si { color: #E6DB74 } /* Literal.String.Interpol */
+.sx { color: #E6DB74 } /* Literal.String.Other */
+.sr { color: #E6DB74 } /* Literal.String.Regex */
+.s1 { color: #E6DB74 } /* Literal.String.Single */
+.ss { color: #E6DB74 } /* Literal.String.Symbol */
+.bp { color: #A6E22E } /* Name.Builtin.Pseudo */
+.fm { color: #A6E22E } /* Name.Function.Magic */
+.vc { color: #F8F8F2 } /* Name.Variable.Class */
+.vg { color: #F8F8F2 } /* Name.Variable.Global */
+.vi { color: #F8F8F2 } /* Name.Variable.Instance */
+.vm { color: #F8F8F2 } /* Name.Variable.Magic */
+.il { color: #AE81FF } /* Literal.Number.Integer.Long */
+    
+        pre { font-size:18px; line-height:1.5; }
+        .evidence { display:grid; grid-template-columns:680px 1fr; gap:28px; margin-top:24px; }
+        .evidence pre { font-size:17px; line-height:1.35; }
+        .evidence .content { padding:15px 25px; }
+        .evidence .bar { padding:12px 23px; font-size:15px; }
+        .evidence .note { font-size:17px; }
+    
+    </style></head><body>
+    <div class="eyebrow">ZHUANGYI QIU / PERSONAL PORTFOLIO DEMO</div>
+    <h1>Tenant isolation verified against real PostgreSQL</h1>
+    <div class="meta">Rule-based mode · Synthetic data · Selected lines from the actual pytest run</div>
+    <section class="terminal"><div class="bar"><span class="dots">● ● ●</span> PYTEST / REAL DATABASE</div>
+      <div class="content"><pre>$ .venv/bin/python -m pytest -v --tb=short
+
+test_health_confirms_real_db_role_and_rls PASSED
+test_missing_or_unknown_key_is_401[headers0] PASSED
+test_answers_only_include_authenticated_tenant[acme] PASSED
+test_cross_tenant_session_read_and_reuse_are_404 PASSED
+test_followups_keep_intent_and_unspecified_filters PASSED
+test_concurrent_turns_preserve_complete_session_history PASSED
+test_raw_queries_without_tenant_return_zero_for_every_data_table PASSED
+test_rls_rejects_wrong_repository_scope_and_unfiltered_sql PASSED
+test_rls_with_check_rejects_cross_tenant_write PASSED
+test_set_local_resets_after_commit_and_rollback PASSED
+test_help_uses_local_hashing_and_real_vector_distance_when_available PASSED
+test_llm_default_is_noop_and_not_called PASSED
+
+<span class="key">======================== 37 passed, 1 warning in 0.25s =========================</span></pre></div></section>
+    <div class="evidence"><section class="terminal"><div class="bar">LIVE /health DATABASE FIELDS</div>
+      <div class="content"><pre><span class="p">{</span>
+<span class="w">  </span><span class="nt">"database_role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tenant_chatbot_app"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"rolsuper"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"rolbypassrls"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"rls_tables"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"pgvector"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="p">}</span>
+</pre></div></section>
+      <div class="note">Sources<br>output/pytest.txt<br>output/health.json<br><br>
+      Test names retain their exact spelling.<br>Repeated file prefixes and progress markers omitted.<br>
+      Full output includes the upstream TestClient deprecation warning.</div></div>
+    </body></html>

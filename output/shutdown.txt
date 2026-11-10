@@ -1,0 +1,6 @@
+ Container tenant-chatbot-db Stopping 
+ Container tenant-chatbot-db Stopped 
+127.0.0.1:8000: closed
+127.0.0.1:55432: closed
+tenant-chatbot-db: status=exited, running=False, exit_code=0
+uvicorn: stopped

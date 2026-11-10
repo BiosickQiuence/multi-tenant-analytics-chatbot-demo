@@ -1,0 +1,4 @@
+Acme Coffee: 270 synthetic posts, 3 accounts, 3 FAQ entries
+Bluebird Fitness: 270 synthetic posts, 3 accounts, 3 FAQ entries
+Nova Books: 270 synthetic posts, 3 accounts, 3 FAQ entries
+Fixed demo clock: 2026-11-10T12:00:00+00:00; 90 complete UTC days before it.
